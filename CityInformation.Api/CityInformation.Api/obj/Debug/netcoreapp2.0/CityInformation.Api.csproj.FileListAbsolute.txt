@@ -8,4 +8,3 @@ D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Api\
 D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Api\obj\Debug\netcoreapp2.0\CityInformation.Api.AssemblyInfo.cs
 D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Api\obj\Debug\netcoreapp2.0\CityInformation.Api.dll
 D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Api\obj\Debug\netcoreapp2.0\CityInformation.Api.pdb
-D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Api\obj\Debug\netcoreapp2.0\CityInformation.Api.csprojResolveAssemblyReference.cache

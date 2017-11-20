@@ -185,13 +185,9 @@ namespace CityInformation.Api.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{cityId}/PointOfInterest/{pointOfInterestId}")]
-        public IActionResult DeletePointOfInterest(int cityId, int pointOfInterestId, [FromBody]PointsOfInterestRequestDto pointsOfInterestPatchDoc)
+        [HttpDelete("{cityId}/PointOfInterest/{pointOfInterestId}")]
+        public IActionResult DeletePointOfInterest(int cityId, int pointOfInterestId)
         {
-            if (pointsOfInterestPatchDoc == null)
-            {
-                return BadRequest();
-            }
 
             var city = CitiesDataStore.CurrentDataStore.Cities.FirstOrDefault(c => c.CityId == cityId);
 
@@ -209,7 +205,7 @@ namespace CityInformation.Api.Controllers
 
             city.PointsOfInterest.Remove(pointsOfInterest);
 
-            _logger.LogInformation($"PointOfInterest: {pointsOfInterest.PointsOfInterestId} has been deleted for City: {city.CityId}");
+            _logger.LogCritical($"PointOfInterest: {pointsOfInterest.PointsOfInterestId} has been deleted for City: {city.CityId}");
             
             return NoContent();
         }
