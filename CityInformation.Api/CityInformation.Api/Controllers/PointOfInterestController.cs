@@ -1,4 +1,5 @@
 ﻿using CityInformation.Api.Models;
+using CityInformation.Api.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,10 +10,12 @@ namespace CityInformation.Api.Controllers
     [Route("api/cities")]
     public class PointOfInterestController: Controller
     {
-        private ILogger<PointOfInterestController> _logger;
-        public PointOfInterestController(ILogger<PointOfInterestController> logger)
+        private readonly ILogger<PointOfInterestController> _logger;
+        private readonly IMailService _mailService;
+        public PointOfInterestController(ILogger<PointOfInterestController> logger, IMailService mailService)
         {
             _logger = logger;
+            _mailService = mailService;
         }
 
         [HttpGet("{CityId}/PointOfInterest")]
@@ -185,13 +188,9 @@ namespace CityInformation.Api.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{cityId}/PointOfInterest/{pointOfInterestId}")]
-        public IActionResult DeletePointOfInterest(int cityId, int pointOfInterestId, [FromBody]PointsOfInterestRequestDto pointsOfInterestPatchDoc)
+        [HttpDelete("{cityId}/PointOfInterest/{pointOfInterestId}")]
+        public IActionResult DeletePointOfInterest(int cityId, int pointOfInterestId)
         {
-            if (pointsOfInterestPatchDoc == null)
-            {
-                return BadRequest();
-            }
 
             var city = CitiesDataStore.CurrentDataStore.Cities.FirstOrDefault(c => c.CityId == cityId);
 
@@ -209,7 +208,8 @@ namespace CityInformation.Api.Controllers
 
             city.PointsOfInterest.Remove(pointsOfInterest);
 
-            _logger.LogInformation($"PointOfInterest: {pointsOfInterest.PointsOfInterestId} has been deleted for City: {city.CityId}");
+            _mailService.Send("Delete", $"PointOfInterest: {pointsOfInterest.PointsOfInterestId} has been deleted for City: {city.CityId}");
+            _logger.LogCritical($"PointOfInterest: {pointsOfInterest.PointsOfInterestId} has been deleted for City: {city.CityId}");
             
             return NoContent();
         }
