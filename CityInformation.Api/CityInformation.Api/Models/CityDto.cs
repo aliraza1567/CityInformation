@@ -10,6 +10,6 @@ namespace CityInformation.Api.Models
 
         public int NumberOfPointsOfInterest => PointsOfInterest.Count;
 
-        public ICollection<NumberOfPointsOfInterestDto> PointsOfInterest { get; set; } = new List<NumberOfPointsOfInterestDto>();
+        public ICollection<PointsOfInterestReponseDto> PointsOfInterest { get; set; } = new List<PointsOfInterestReponseDto>();
     }
 }
