@@ -12,6 +12,16 @@ namespace CityInformation.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            //.AddJsonOptions(options =>
+            //{
+            //    if (options.SerializerSettings.ContractResolver != null)
+            //    {
+            //        var castResolver = options.SerializerSettings.ContractResolver as DefaultContractResolver;
+
+            //        if (castResolver != null)
+            //            castResolver.NamingStrategy = null;
+            //    }
+            //} );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
