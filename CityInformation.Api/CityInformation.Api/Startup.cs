@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
 namespace CityInformation.Api
 {
@@ -12,9 +14,10 @@ namespace CityInformation.Api
     {
         public static IConfiguration Configuration { get; private set; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+            environment.ConfigureNLog("nlog.config");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -40,6 +43,9 @@ namespace CityInformation.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddNLog();
+            app.AddNLogWeb();
+
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
