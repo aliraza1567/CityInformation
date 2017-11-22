@@ -1,5 +1,6 @@
 ﻿using CityInformation.Api.Services;
 using CityInformation.Database;
+using CityInformation.Database.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -40,6 +41,9 @@ namespace CityInformation.Api
             //} );
 
             services.AddTransient<IMailService, MailService>();
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
+
+            //Create System Variable for Database Connection String with the Name of connectionString:CityInformationDbConnectionString
 
             var connectionString = Configuration["connectionString:CityInformationDbConnectionString"];
 
