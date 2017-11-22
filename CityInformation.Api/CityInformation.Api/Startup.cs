@@ -41,7 +41,7 @@ namespace CityInformation.Api
 
             services.AddTransient<IMailService, MailService>();
 
-            var connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=CityInformation;Data Source=DESKTOP-O1HIHUK\SQLSERVER17";
+            var connectionString = Configuration["connectionString:CityInformationDbConnectionString"];
 
             services.AddDbContext<CityInformationContext>(builder => builder.UseSqlServer(connectionString));
         }

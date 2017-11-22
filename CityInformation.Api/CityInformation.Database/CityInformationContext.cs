@@ -7,7 +7,7 @@ namespace CityInformation.Database
     {
         public CityInformationContext(DbContextOptions<CityInformationContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         public DbSet<CityEntity> Cities { get; set; }
