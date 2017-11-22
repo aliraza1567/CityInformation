@@ -3401,11 +3401,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Work\\Projects\\GitHub\\CityInformation\\CityInformation.Api\\CityInformation.Database\\CityInformation.Database.csproj",
+      "projectUniqueName": "D:\\Projects\\CityInformation\\CityInformation.Api\\CityInformation.Database\\CityInformation.Database.csproj",
       "projectName": "CityInformation.Database",
-      "projectPath": "D:\\Work\\Projects\\GitHub\\CityInformation\\CityInformation.Api\\CityInformation.Database\\CityInformation.Database.csproj",
+      "projectPath": "D:\\Projects\\CityInformation\\CityInformation.Api\\CityInformation.Database\\CityInformation.Database.csproj",
       "packagesPath": "C:\\Users\\Ali Raza\\.nuget\\packages\\",
-      "outputPath": "D:\\Work\\Projects\\GitHub\\CityInformation\\CityInformation.Api\\CityInformation.Database\\obj\\",
+      "outputPath": "D:\\Projects\\CityInformation\\CityInformation.Api\\CityInformation.Database\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

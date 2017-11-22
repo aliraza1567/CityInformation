@@ -13249,11 +13249,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Work\\Projects\\GitHub\\CityInformation\\CityInformation.Api\\CityInformation.Api\\CityInformation.Api.csproj",
+      "projectUniqueName": "D:\\Projects\\CityInformation\\CityInformation.Api\\CityInformation.Api\\CityInformation.Api.csproj",
       "projectName": "CityInformation.Api",
-      "projectPath": "D:\\Work\\Projects\\GitHub\\CityInformation\\CityInformation.Api\\CityInformation.Api\\CityInformation.Api.csproj",
+      "projectPath": "D:\\Projects\\CityInformation\\CityInformation.Api\\CityInformation.Api\\CityInformation.Api.csproj",
       "packagesPath": "C:\\Users\\Ali Raza\\.nuget\\packages\\",
-      "outputPath": "D:\\Work\\Projects\\GitHub\\CityInformation\\CityInformation.Api\\CityInformation.Api\\obj\\",
+      "outputPath": "D:\\Projects\\CityInformation\\CityInformation.Api\\CityInformation.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13272,8 +13272,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\Work\\Projects\\GitHub\\CityInformation\\CityInformation.Api\\CityInformation.Database\\CityInformation.Database.csproj": {
-              "projectPath": "D:\\Work\\Projects\\GitHub\\CityInformation\\CityInformation.Api\\CityInformation.Database\\CityInformation.Database.csproj"
+            "D:\\Projects\\CityInformation\\CityInformation.Api\\CityInformation.Database\\CityInformation.Database.csproj": {
+              "projectPath": "D:\\Projects\\CityInformation\\CityInformation.Api\\CityInformation.Database\\CityInformation.Database.csproj"
             }
           }
         }
