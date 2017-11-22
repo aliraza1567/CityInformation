@@ -1,7 +1,9 @@
 ﻿using CityInformation.Api.Services;
+using CityInformation.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -38,6 +40,10 @@ namespace CityInformation.Api
             //} );
 
             services.AddTransient<IMailService, MailService>();
+
+            var connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=CityInformation;Data Source=DESKTOP-O1HIHUK\SQLSERVER17";
+
+            services.AddDbContext<CityInformationContext>(builder => builder.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

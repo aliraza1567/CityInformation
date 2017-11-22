@@ -5021,6 +5021,19 @@
         "runtime": {
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
+      },
+      "CityInformation.Database/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.0.1"
+        },
+        "compile": {
+          "bin/placeholder/CityInformation.Database.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CityInformation.Database.dll": {}
+        }
       }
     }
   },
@@ -13209,10 +13222,16 @@
         "windowsazure.storage.8.1.4.nupkg.sha512",
         "windowsazure.storage.nuspec"
       ]
+    },
+    "CityInformation.Database/1.0.0": {
+      "type": "project",
+      "path": "../CityInformation.Database/CityInformation.Database.csproj",
+      "msbuildProject": "../CityInformation.Database/CityInformation.Database.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "CityInformation.Database >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.3",
       "Microsoft.NETCore.App >= 2.0.0",
       "NLog >= 5.0.0-beta11",
@@ -13251,7 +13270,11 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Work\\Projects\\GitHub\\CityInformation\\CityInformation.Api\\CityInformation.Database\\CityInformation.Database.csproj": {
+              "projectPath": "D:\\Work\\Projects\\GitHub\\CityInformation\\CityInformation.Api\\CityInformation.Database\\CityInformation.Database.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
