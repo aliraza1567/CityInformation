@@ -11,9 +11,10 @@ using System;
 namespace CityInformation.Database.Migrations
 {
     [DbContext(typeof(CityInformationContext))]
-    partial class CityInformationContextModelSnapshot : ModelSnapshot
+    [Migration("20171122063655_TypeChange")]
+    partial class TypeChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
