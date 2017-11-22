@@ -1,0 +1,9 @@
+D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Database\bin\Debug\netcoreapp2.0\CityInformation.Database.deps.json
+D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Database\bin\Debug\netcoreapp2.0\CityInformation.Database.dll
+D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Database\bin\Debug\netcoreapp2.0\CityInformation.Database.pdb
+D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Database\obj\Debug\netcoreapp2.0\CityInformation.Database.csprojResolveAssemblyReference.cache
+D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Database\obj\Debug\netcoreapp2.0\CityInformation.Database.csproj.CoreCompileInputs.cache
+D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Database\obj\Debug\netcoreapp2.0\CityInformation.Database.AssemblyInfoInputs.cache
+D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Database\obj\Debug\netcoreapp2.0\CityInformation.Database.AssemblyInfo.cs
+D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Database\obj\Debug\netcoreapp2.0\CityInformation.Database.dll
+D:\Work\Projects\GitHub\CityInformation\CityInformation.Api\CityInformation.Database\obj\Debug\netcoreapp2.0\CityInformation.Database.pdb
