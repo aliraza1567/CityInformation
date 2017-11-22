@@ -11,6 +11,6 @@ namespace CityInformation.Database
         }
 
         public DbSet<CityEntity> Cities { get; set; }
-        public DbSet<PointOfInterest> PointOfInterests { get; set; }
+        public DbSet<PointOfInterestEntity> PointOfInterests { get; set; }
     }
 }
