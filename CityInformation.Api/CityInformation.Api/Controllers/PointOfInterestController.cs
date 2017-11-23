@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CityInformation.Api.Controllers
 {
@@ -154,47 +153,45 @@ namespace CityInformation.Api.Controllers
                 return BadRequest();
             }
 
-            var city = CitiesDataStore.CurrentDataStore.Cities.FirstOrDefault(c => c.CityId == cityId);
-
-            if (city == null)
+            if (!_cityInfoRepository.IsCityExist(cityId))
             {
                 return NotFound();
             }
 
-            var pointsOfInterest = city.PointsOfInterest.FirstOrDefault(p => p.PointOfInterestId == pointOfInterestId);
+            var pointsOfInterestEntity = _cityInfoRepository.GetPointOfInterest(cityId, pointOfInterestId);
 
-            if (pointsOfInterest == null)
+            if (pointsOfInterestEntity == null)
             {
                 return NotFound();
             }
 
-            var patchPointOfInterest = new PointsOfInterestRequestDto
-            {
-                Name = pointsOfInterest.Name,
-                Description = pointsOfInterest.Description
-            };
+            var pointsOfInterestPatch = Mapper.Map<PointsOfInterestRequestDto>(pointsOfInterestEntity);
 
-            pointsOfInterestPatchDoc.ApplyTo(patchPointOfInterest, ModelState);
+            pointsOfInterestPatchDoc.ApplyTo(pointsOfInterestPatch, ModelState);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (patchPointOfInterest.Name == patchPointOfInterest.Description)
+            if (pointsOfInterestPatch.Name == pointsOfInterestPatch.Description)
             {
                 ModelState.AddModelError("Description", "Name and Description can not be the Same");
             }
 
-            TryValidateModel(patchPointOfInterest);
+            TryValidateModel(pointsOfInterestPatch);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            pointsOfInterest.Name = patchPointOfInterest.Name;
-            pointsOfInterest.Description = patchPointOfInterest.Description;
+            Mapper.Map(pointsOfInterestPatch, pointsOfInterestEntity);
+
+            if (!_cityInfoRepository.Save())
+            {
+                return StatusCode(500, "A problem occured while handlig the request");
+            }
 
             return NoContent();
         }
@@ -203,24 +200,27 @@ namespace CityInformation.Api.Controllers
         public IActionResult DeletePointOfInterest(int cityId, int pointOfInterestId)
         {
 
-            var city = CitiesDataStore.CurrentDataStore.Cities.FirstOrDefault(c => c.CityId == cityId);
-
-            if (city == null)
+            if (!_cityInfoRepository.IsCityExist(cityId))
             {
                 return NotFound();
             }
 
-            var pointsOfInterest = city.PointsOfInterest.FirstOrDefault(p => p.PointOfInterestId == pointOfInterestId);
+            var pointsOfInterestEntity = _cityInfoRepository.GetPointOfInterest(cityId, pointOfInterestId);
 
-            if (pointsOfInterest == null)
+            if (pointsOfInterestEntity == null)
             {
                 return NotFound();
             }
 
-            city.PointsOfInterest.Remove(pointsOfInterest);
+            _cityInfoRepository.DeletePointOfInterest(pointsOfInterestEntity);
 
-            _mailService.Send("Delete", $"PointOfInterest: {pointsOfInterest.PointOfInterestId} has been deleted for City: {city.CityId}");
-            _logger.LogCritical($"PointOfInterest: {pointsOfInterest.PointOfInterestId} has been deleted for City: {city.CityId}");
+            if (!_cityInfoRepository.Save())
+            {
+                return StatusCode(500, "A problem occured while handlig the request");
+            }
+
+            _mailService.Send("Delete", $"PointOfInterest: {pointOfInterestId} has been deleted for City: {cityId}");
+            _logger.LogCritical($"PointOfInterest: {pointOfInterestId} has been deleted for City: {cityId}");
             
             return NoContent();
         }

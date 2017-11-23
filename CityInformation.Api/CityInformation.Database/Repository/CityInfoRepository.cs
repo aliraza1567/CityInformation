@@ -55,5 +55,10 @@ namespace CityInformation.Database.Repository
         {
             return _context.SaveChanges() >=0;
         }
+
+        public void DeletePointOfInterest(PointOfInterestEntity pointOfInterestEntity)
+        {
+            _context.PointOfInterests.Remove(pointOfInterestEntity);
+        }
     }
 }

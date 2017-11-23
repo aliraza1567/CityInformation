@@ -12,6 +12,7 @@ namespace CityInformation.Database.Repository
         bool IsCityExist(int cityId);
         void AddPointOfInterestForCity(int cityId, PointOfInterestEntity pointOfInterestEntity);
         bool Save();
+        void DeletePointOfInterest(PointOfInterestEntity pointOfInterestEntity);
 
     }
 }
