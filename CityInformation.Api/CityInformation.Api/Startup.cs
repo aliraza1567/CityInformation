@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using NLog.Web;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace CityInformation.Api
 {
@@ -39,6 +40,9 @@ namespace CityInformation.Api
             //            castResolver.NamingStrategy = null;
             //    }
             //} );
+
+            services.AddSwaggerGen(options =>
+                options.SwaggerDoc("v1", new Info {Title = "City information API", Version = "v1"}));
 
             services.AddTransient<IMailService, MailService>();
             services.AddScoped<ICityInfoRepository, CityInfoRepository>();
@@ -70,6 +74,12 @@ namespace CityInformation.Api
 
             cityInformationContext.DataSeed();
             app.UseStatusCodePages();
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "City Information API V1");
+            });
 
             AutoMapper.Mapper.Initialize(mapper =>
             {
