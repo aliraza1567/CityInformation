@@ -17,6 +17,7 @@ namespace CityInformation.Api.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(CityWithoutPointOfInterestDto), 200)]
         public IActionResult GetCities()
         {
             var cityEntities = _cityInfoRepository.GetCities();
