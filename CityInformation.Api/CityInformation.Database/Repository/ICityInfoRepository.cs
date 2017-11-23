@@ -11,6 +11,7 @@ namespace CityInformation.Database.Repository
         CityEntity GetCity(int cityId, bool includePointOfInterestId);
         IEnumerable<PointOfInterestEntity> GetPointOfInterest(int cityId);
         PointOfInterestEntity GetPointOfInterest(int cityId, int pointOfInterestId);
+        bool IsCityExist(int cityId);
 
     }
 
@@ -49,5 +50,9 @@ namespace CityInformation.Database.Repository
             return _context.PointOfInterests.FirstOrDefault(city => city.CityId == cityId && city.PointOfInterestId == pointOfInterestId);
         }
 
+        public bool IsCityExist(int cityId)
+        {
+            return _context.Cities.Any(entity => entity.CityId == cityId);
+        }
     }
 }

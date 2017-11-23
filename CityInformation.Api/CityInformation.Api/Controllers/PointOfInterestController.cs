@@ -1,8 +1,10 @@
 ﻿using CityInformation.Api.Models;
 using CityInformation.Api.Services;
+using CityInformation.Database.Repository;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CityInformation.Api.Controllers
@@ -12,44 +14,67 @@ namespace CityInformation.Api.Controllers
     {
         private readonly ILogger<PointOfInterestController> _logger;
         private readonly IMailService _mailService;
-        public PointOfInterestController(ILogger<PointOfInterestController> logger, IMailService mailService)
+        private ICityInfoRepository _cityInfoRepository;
+        public PointOfInterestController(ILogger<PointOfInterestController> logger, IMailService mailService, ICityInfoRepository cityInfoRepository)
         {
             _logger = logger;
             _mailService = mailService;
+            _cityInfoRepository = cityInfoRepository;
         }
 
         [HttpGet("{CityId}/PointOfInterest")]
         public IActionResult GetPointsOfInterest(int cityId)
         {
-            var cityInfo = CitiesDataStore.CurrentDataStore.Cities.FirstOrDefault(c => c.CityId == cityId);
-
-            if (cityInfo == null)
+            if (!_cityInfoRepository.IsCityExist(cityId))
             {
                 return NotFound();
             }
 
-            return Ok(cityInfo);
+            var pointOfInterestEntities = _cityInfoRepository.GetPointOfInterest(cityId);
+
+            if (pointOfInterestEntities == null)
+            {
+                return NotFound();
+            }
+
+            var pointsOfInterest = new List<PointsOfInterestReponseDto>();
+
+            foreach (var pointOfInterestEntity in pointOfInterestEntities)
+            {
+                pointsOfInterest.Add(new PointsOfInterestReponseDto
+                {
+                    PointsOfInterestId = pointOfInterestEntity.PointOfInterestId,
+                    Name = pointOfInterestEntity.Name,
+                    Description = pointOfInterestEntity.Description
+                });
+            }
+
+            return Ok(pointsOfInterest);
         }
 
         [HttpGet("{CityId}/PointOfInterest/{pointOfInterestId}", Name = "GetPointsOfInterest")]
         public IActionResult GetPointsOfInterest(int cityId, int pointOfInterestId)
         {
-            var cityInfo = CitiesDataStore.CurrentDataStore.Cities.FirstOrDefault(c => c.CityId == cityId);
-
-            if (cityInfo == null)
+            if (!_cityInfoRepository.IsCityExist(cityId))
             {
                 return NotFound();
             }
 
-            var pointOfInterest = cityInfo.PointsOfInterest.FirstOrDefault(c => c.PointsOfInterestId == pointOfInterestId);
+            var pointOfInterestEntities = _cityInfoRepository.GetPointOfInterest(cityId, pointOfInterestId);
 
-            if (pointOfInterest == null)
+            if (pointOfInterestEntities == null)
             {
                 return NotFound();
             }
 
+            var pointsOfInterest = new PointsOfInterestReponseDto
+            {
+                PointsOfInterestId = pointOfInterestEntities.PointOfInterestId,
+                Name = pointOfInterestEntities.Name,
+                Description = pointOfInterestEntities.Description
+            };
 
-            return Ok(pointOfInterest);
+            return Ok(pointsOfInterest);
         }
 
         [HttpPost("{cityId}/PointOfInterest")]
