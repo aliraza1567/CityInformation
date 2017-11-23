@@ -76,6 +76,7 @@ namespace CityInformation.Api
                 mapper.CreateMap<Database.Entities.CityEntity, Models.CityWithoutPointOfInterestDto>();
                 mapper.CreateMap<Database.Entities.CityEntity, Models.CityWithPointOfInterestDto>();
                 mapper.CreateMap<Database.Entities.PointOfInterestEntity, Models.PointsOfInterestReponseDto>();
+                mapper.CreateMap<Models.PointsOfInterestRequestDto, Database.Entities.PointOfInterestEntity>();
             });
 
             app.UseMvc();

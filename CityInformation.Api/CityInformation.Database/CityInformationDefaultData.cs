@@ -20,7 +20,7 @@ namespace CityInformation.Database
                     Name = "Amsterdam",
                     Description = "Amsterdam is the Netherlands’ capital, known for its artistic heritage.",
                     
-                    PointOfInterest = new List<PointOfInterestEntity>
+                    PointsOfInterest = new List<PointOfInterestEntity>
                     {
                         new PointOfInterestEntity
                         {
@@ -45,7 +45,7 @@ namespace CityInformation.Database
                     Name = "Antwerp",
                     Description = "Antwerp is a port city on Belgium’s River Scheldt, with history dating to the Middle Ages.",
 
-                    PointOfInterest = new List<PointOfInterestEntity>
+                    PointsOfInterest = new List<PointOfInterestEntity>
                     {
                         new PointOfInterestEntity
                         {
@@ -69,7 +69,7 @@ namespace CityInformation.Database
                 {
                     Name = "New York",
                     Description = "New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean.",
-                    PointOfInterest = new List<PointOfInterestEntity>
+                    PointsOfInterest = new List<PointOfInterestEntity>
                     {
                         new PointOfInterestEntity
                         {
