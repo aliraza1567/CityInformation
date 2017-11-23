@@ -6,13 +6,13 @@ namespace CityInformation.Api
     public class CitiesDataStore
     {
         public static CitiesDataStore CurrentDataStore { get; } = new CitiesDataStore();
-        public List<CityDto> Cities { get; set; }
+        public List<CityWithPointOfInterestDto> Cities { get; set; }
 
         public CitiesDataStore()
         {
-            Cities = new List<CityDto>
+            Cities = new List<CityWithPointOfInterestDto>
             {
-                new CityDto
+                new CityWithPointOfInterestDto
                 {
                     CityId = 1,
                     Name = "Amsterdam",
@@ -40,7 +40,7 @@ namespace CityInformation.Api
                     }
                 },
 
-                new CityDto
+                new CityWithPointOfInterestDto
                 {
                     CityId = 2,
                     Name = "Antwerp",
@@ -68,7 +68,7 @@ namespace CityInformation.Api
                     }
                 },
 
-                new CityDto
+                new CityWithPointOfInterestDto
                 {
                     CityId = 3,
                     Name = "New York",

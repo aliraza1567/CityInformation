@@ -47,7 +47,7 @@ namespace CityInformation.Api
 
             var connectionString = Configuration["connectionString:CityInformationDbConnectionString"];
 
-            services.AddDbContext<CityInformationContext>(builder => builder.UseSqlServer(connectionString));
+            services.AddDbContext<CityInformationContext>(builder => builder.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=CityInformation;Data Source=DESKTOP-ASMB53O\\SQLSERVER2016"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +70,13 @@ namespace CityInformation.Api
 
             cityInformationContext.DataSeed();
             app.UseStatusCodePages();
+
+            AutoMapper.Mapper.Initialize(mapper =>
+            {
+                mapper.CreateMap<Database.Entities.CityEntity, Models.CityWithoutPointOfInterestDto>();
+                mapper.CreateMap<Database.Entities.CityEntity, Models.CityWithPointOfInterestDto>();
+                mapper.CreateMap<Database.Entities.PointOfInterestEntity, Models.PointsOfInterestReponseDto>();
+            });
 
             app.UseMvc();
             
