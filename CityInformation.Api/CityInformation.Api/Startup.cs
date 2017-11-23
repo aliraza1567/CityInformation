@@ -47,7 +47,7 @@ namespace CityInformation.Api
 
             var connectionString = Configuration["connectionString:CityInformationDbConnectionString"];
 
-            services.AddDbContext<CityInformationContext>(builder => builder.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=CityInformation;Data Source=DESKTOP-ASMB53O\\SQLSERVER2016"));
+            services.AddDbContext<CityInformationContext>(builder => builder.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
